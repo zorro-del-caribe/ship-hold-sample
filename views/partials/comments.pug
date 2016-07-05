@@ -1,0 +1,9 @@
+mixin commentComp(comment)
+    article.comment
+        header
+            small
+                time(datetime=comment.publishedAt,pubdate) #{comment.publishedAt.toDateString()}
+                |  by&nbsp;
+                a(href='?author=' + comment.author.id) #{comment.author.username}
+        p #{comment.content}
+

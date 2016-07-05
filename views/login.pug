@@ -1,0 +1,79 @@
+html
+    head
+        title Super Blog - log in
+        meta(name='viewport',content='"width=device-width, initial-scale=1"')
+    body
+        style.
+            body {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: "DDG_ProximaNova", "DDG_ProximaNova_UI_0", "DDG_ProximaNova_UI_1", "DDG_ProximaNova_UI_2", "DDG_ProximaNova_UI_3", "DDG_ProximaNova_UI_4", "DDG_ProximaNova_UI_5", "DDG_ProximaNova_UI_6", "Proxima Nova", "Helvetica Neue", "Helvetica", "Segoe UI", "Nimbus Sans L", "Liberation Sans", "Open Sans", FreeSans, Arial, sans-serif;
+                color: #2f2f2f;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+            }
+
+            label, button {
+                margin-top: 1em;
+            }
+
+            form input, form button {
+                box-sizing: border-box;
+                width: 100%;
+            }
+
+            input {
+                padding: 0.4em;
+                font-size: 16px;
+                border-radius: 3px;
+                border: 1px solid darkblue;
+            }
+
+            input:focus {
+                border-color: #ee5a4c;
+                box-shadow: inset 0 0 5px 1px #b52727;
+                outline: 0;
+                transition: all 0.3s;
+            }
+
+            button {
+                padding: 0.5em;
+                border-radius: 4px;
+                font-size: 1.1em;
+                background: #ff8087;
+                color: #f6f6f6;
+                border: 0;
+            }
+
+            button:hover {
+                cursor: pointer;
+                background: #db6e6e;
+                transition: background 0.5s;
+            }
+
+            @media (max-width: 820px) {
+                body {
+                    font-size: 90%;
+                    align-items: flex-start;
+                }
+
+            }
+
+        form(action="/login", method="post")
+            input(hidden=true, id='_csrf', name='_csrf', value=_csrf)
+            label Username or email:
+                input(type='text', name="username", placeholder="ex: lorenzofox3 or foo@bar.com",required)
+            label Password:
+                input(type="password",name="password",placeholder="ex: My.Sup3rSecr3t",required)
+            button Log in
+

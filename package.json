@@ -1,0 +1,42 @@
+{
+  "name": "ship-hold-sample-app",
+  "version": "1.0.0",
+  "description": "sample application (blog) using koa.js and ship-hold database access layer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:create": "node ./scripts/createTable.js",
+    "db:fixture": "node ./scripts/fixture.js",
+    "db:bootstrap": "npm run db:create && npm run db:fixture"
+  },
+  "keywords": [
+    "ship-hold",
+    "koa",
+    "postgres",
+    "sql",
+    "database",
+    "blog"
+  ],
+  "author": "Laurent Renard",
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^4.1.3",
+    "bcrypt": "^0.8.7",
+    "casual": "^1.5.3",
+    "is-my-json-valid": "^2.13.1",
+    "koa": "^1.2.0",
+    "koa-bodyparser": "^2.2.0",
+    "koa-compress": "^1.0.9",
+    "koa-csrf": "^2.5.0",
+    "koa-favicon": "^1.2.1",
+    "koa-generic-session": "^1.11.1",
+    "koa-logger": "^1.3.0",
+    "koa-mount": "^1.3.0",
+    "koa-pug": "^3.0.0-0",
+    "koa-router": "^5.4.0",
+    "koa-static": "^2.0.0",
+    "kors": "^1.0.0",
+    "pg": "^5.1.0",
+    "stampit": "^2.1.1"
+  }
+}

@@ -1,0 +1,30 @@
+extends ./layout/main
+include ./partials/posts
+
+mixin pagination(pageNumber, pageSize, count)
+    -const begin = (pageNumber-1)*pageSize +1;
+    -const end = begin + posts.length-1;
+    -const hasPrevious = pageNumber >= 2;
+    -const hasNext = end < count;
+    p.pagination-info
+        if(hasPrevious)
+            a(role='button',rel='prev', data-page=(+(pageNumber) - 1)) prev
+        if(hasNext)
+            a(role='button',rel='next', data-page=(+(pageNumber) + 1)) next
+        small !{`showing posts <em>${begin}</em> - <em>${end}</em> of <em>${count}</em>`}
+
+block content
+    div.container-content
+        header
+            if(tag)
+                div.tag-description
+                    h3 !{'description for the tag <strong>' + tag.label + '</strong>'}
+                    p
+                        blockquote #{tag.description}
+            +pagination(pageNumber, pageSize, count)
+        ol.flex.posts-list
+            each post in posts
+                li.post-container
+                    +postPreview(post)
+        footer
+            +pagination(pageNumber,pageSize,count)

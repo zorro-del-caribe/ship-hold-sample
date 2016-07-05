@@ -1,0 +1,11 @@
+extends ./layout/main
+
+block content
+    form
+        label title
+            input(placeholder='ex: my super post', required=true,name='title' value=post.title)
+        label content
+            textarea(placeholder='my super post is about ...',required=true,name='content')
+                #{post.content}
+        // todo tags
+        button Save

@@ -1,0 +1,51 @@
+include comments.pug
+
+mixin postPreview(post)
+    article.post.flex-column
+        header
+            if(user && post.author.id === user.id)
+                ul(role='menu')
+                    li(role='menuitem')
+                        a(href='/posts/' + post.id + '/edit') Edit
+                    li(role='menuitem')
+                        button Delete
+            h1 #{post.title}
+            small
+                time(datetime=post.publishedAt,pubdate) #{post.publishedAt.toDateString()}
+                |  by&nbsp;
+                a(href='?author=' + post.author.id, rel='author') #{post.author.username}
+                if(post.comments.length)
+                    -var plural = post.comments.length >1 ? 's':''
+                    p
+                        a(href="/posts/" + post.id + '#comments') #{post.comments.length + ' comment' + plural}
+        div.post-content
+            p #{post.content.length < 200 ? post.content : post.content.substr(0, 200) + '[...]'}
+            p
+                a(href="/posts/" + post.id, rel='permalink') Read more
+        footer
+            ul
+                each tag in post.tags
+                    li.tag
+                        a(href='?tag=' + tag.id, rel='tag') ##{tag.label}
+
+mixin post(post)
+    article.post.flex-column.full-post
+        header.container-content
+            h1 #{post.title}
+            small
+                time(datetime=post.publishedAt,pubdate) #{post.publishedAt.toDateString()}
+                |  by&nbsp;
+                a(href='/?author=' + post.author.id,rel='author') #{post.author.username}
+        section#content.post-content.container-content
+            p #{post.content}
+            footer
+                ul
+                    each tag in post.tags
+                        li.tag
+                            a(href='/?tag=' + tag.id, rel='tag') ##{tag.label}
+        section#comments.container-content
+            h2 comments
+            ol
+                each comment in post.comments
+                    li.comment-container
+                        +commentComp(comment)

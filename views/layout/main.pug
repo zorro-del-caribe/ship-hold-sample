@@ -1,0 +1,30 @@
+html
+    head
+        title Super Blog
+        meta(name='viewport',content='"width=device-width, initial-scale=1"')
+        link(rel='styleSheet', type='text/css', href='/public/main.css')
+    body
+        block inlineCss
+        header(role='banner')
+            h1.center-text
+                a(href='/') My Super Blog
+            div.user-action-container
+                if(user)
+                    p Welcome
+                        strong  #{user.username}
+                ul(role='menu')
+                    if(!user)
+                        li(role='menuitem')
+                            a(href='/login') Log in
+                    if(user)
+                        li(role='menuitem')
+                            a(href='/logout') Log out
+
+            form(method='get', action='/').search-form
+                input(name='search',placeholder='search posts: title, content')#search-input
+                button Search
+        main
+            block content
+        footer.center-text
+            p Laurent Renard copyright
+        script(src='/public/main.js')
