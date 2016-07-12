@@ -8,6 +8,7 @@
     "db:create": "node ./scripts/createTable.js",
     "db:fixture": "node ./scripts/fixture.js",
     "db:bootstrap": "npm run db:create && npm run db:fixture"
+    "start": "node ./index.js"
   },
   "keywords": [
     "ship-hold",
