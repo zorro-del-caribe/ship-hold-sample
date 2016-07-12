@@ -1,11 +1,18 @@
 extends ./layout/main
 
 block content
-    form
-        label title
-            input(placeholder='ex: my super post', required=true,name='title' value=post.title)
-        label content
-            textarea(placeholder='my super post is about ...',required=true,name='content')
-                #{post.content}
+    - const actionUrl=post.id ? '/' + post.id : '';
+    form(action='/posts' + actionUrl,method='post').flex-column.container-content.edit-post
+        input(hidden, id='_csrf', name='_csrf', value=_csrf)
+        label
+            span title
+            input(placeholder='ex: my super post',autofocus, required=true,name='title' value=post.title)
+        label
+            span content
+            textarea(rows=15, placeholder='my super post is about ...',required=true,name='content')
+                | #{post.content}
+        label
+            span tags (coma delimited)
+            input(name='tags',placeholder='ex: dolorum, valoris, raymond', value=post.tags ? post.tags.map(t => t.label).join(',') : '')
         // todo tags
         button Save

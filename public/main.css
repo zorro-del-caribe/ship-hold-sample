@@ -4,6 +4,8 @@ body {
     box-sizing: border-box;
     margin: 0;
     color: #2f2f2f;
+    display: flex;
+    flex-direction: column;
 }
 
 body * {
@@ -11,7 +13,7 @@ body * {
 }
 
 header[role="banner"] {
-    background: #4591e6;
+    background: linear-gradient(to top, #72a1ff, #3872e7);
     color: #fafafa;
     padding-top: 0.2em;
     position: fixed;
@@ -42,6 +44,7 @@ li[role="menuitem"] a {
 header[role="banner"] h1 {
     margin: 0 0 0.2em 0;
     flex-grow: 1;
+    text-shadow: 1px 1px 3px #382fc3;
 }
 
 header[role="banner"] p {
@@ -86,8 +89,14 @@ h1, h2 {
     width: 90%;
 }
 
-.pagination-info {
-    float: right;
+.tool-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.tool-bar > * {
+    margin: 0.3em;
 }
 
 .posts-list {
@@ -105,22 +114,35 @@ h1, h2 {
     flex-direction: column;
 }
 
-.post ul[role='menu'] {
+.post [role='menu'] {
     position: absolute;
     right: 0;
     top: -12em;
     display: flex;
-    padding: 0;
-    background: #686868;
+    padding: 0.1em;
+    background: linear-gradient(to top, #363636, #686868);
+    border-radius: 2px;
 }
 
-.post li[role='menuitem'] {
+#add-comment {
     padding: 0.3em;
     color: white;
-    flex-basis: 50%;
+    background: linear-gradient(to top, #363636, #686868);
+    border-radius: 2px;
+    border: 0;
+    cursor: pointer;
 }
 
-.post li[role='menuitem'] > * {
+.full-post [role='menu'] {
+    top: 0;
+}
+
+[role='menuitem'] {
+    padding: 0.3em;
+    color: white;
+}
+
+[role='menuitem'] > * {
     color: white;
     text-decoration: underline;
     cursor: pointer;
@@ -129,15 +151,19 @@ h1, h2 {
     font-size: 0.8em;
 }
 
-.post li[role='menuitem']:hover {
+[role='menuitem']:hover, #add-comment:hover {
     background: #7a7a7a;
     transition: background 0.4s;
+}
+
+.comment-container, .post-container {
+    transition: all 0.8s;
 }
 
 .post-container {
     padding: 0.5em;
     display: flex;
-    flex-basis: 45%;
+    flex-basis: 47%;
     margin-bottom: 0.5em;
     position: relative;
     overflow: hidden;
@@ -145,16 +171,16 @@ h1, h2 {
 
 .post-container:hover {
     background: #f8f8f8;
-    transition: background 0.4s;
 }
 
-.post-container:hover ul[role='menu'] {
+article:hover [role='menu'] {
     top: 0;
     transition: top 0.2s;
 }
 
 .post {
     justify-content: space-between;
+    flex-grow: 1;
 }
 
 footer > ul {
@@ -186,6 +212,7 @@ footer > ul {
 
 .full-post > header {
     background: #f8f8f8;
+    position: relative;
 }
 
 .tag {
@@ -205,6 +232,7 @@ footer > ul {
 }
 
 .tag-description {
+    flex-basis: 100%;
     color: #5a5a5a;
     background: #f8f8f8;
     padding: 0.5em 1.2em;
@@ -228,6 +256,7 @@ blockquote:after {
 
 .comment-container:nth-child(2n+1) {
     background: #fff6f7;
+    position: relative;
 }
 
 #comments {
@@ -250,6 +279,12 @@ body > footer {
     padding: 1em;
     background: #686868;
     color: #f9f9f9;
+    flex-grow: 1;
+}
+
+.pagination-info {
+    text-align: right;
+    flex-grow: 1;
 }
 
 .pagination-info a {
@@ -280,11 +315,11 @@ main {
     width: 100%;
 }
 
-.search-form input {
+input, textarea {
     margin: 0 0.8em;
 }
 
-.search-form > button {
+form button {
     padding: 0.5em;
     border-radius: 4px;
     font-size: 1.1em;
@@ -293,13 +328,13 @@ main {
     border: 0;
 }
 
-.search-form > button:hover {
+form button:hover {
     cursor: pointer;
     background: #db6e6e;
     transition: background 0.5s;
 }
 
-#search-input {
+input, textarea {
     padding: 0.4em;
     font-size: 16px;
     border-radius: 3px;
@@ -307,11 +342,35 @@ main {
     min-width: 250px;
 }
 
-#search-input:focus {
-    border-color: #ee5a4c;
-    box-shadow: inset 0 0 5px 1px #b52727;
+input:focus, textarea:focus {
+    border-color: #d6d04b;
+    box-shadow: inset 0 0 5px 1px #b59627;
     outline: 0;
     transition: all 0.3s;
+}
+
+.edit-post label {
+    display: flex;
+    margin: 1em 0;
+    flex-wrap: wrap;
+}
+
+.edit-post label > *:first-child {
+    flex-basis: 30%;
+    margin: 0.8em;
+}
+
+.edit-post label input, .edit-post label textarea {
+    flex-grow: 1;
+}
+
+textarea {
+    resize: none;
+}
+
+.dying {
+    transform: scaleY(0) scaleX(0);
+    opacity: 0;
 }
 
 @media (max-width: 780px) {

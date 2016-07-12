@@ -15,16 +15,18 @@ mixin pagination(pageNumber, pageSize, count)
 
 block content
     div.container-content
-        header
+        header.tool-bar
             if(tag)
                 div.tag-description
                     h3 !{'description for the tag <strong>' + tag.label + '</strong>'}
                     p
                         blockquote #{tag.description}
+            if(user)
+                a(href='/new/post') + new
             +pagination(pageNumber, pageSize, count)
         ol.flex.posts-list
             each post in posts
                 li.post-container
                     +postPreview(post)
-        footer
+        footer.tool-bar
             +pagination(pageNumber,pageSize,count)

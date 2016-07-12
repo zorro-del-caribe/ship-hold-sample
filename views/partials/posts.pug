@@ -1,14 +1,18 @@
 include comments.pug
 
+mixin actions(post)
+    if(user && post.author.id === user.id)
+        ul(role='menu')
+            li(role='menuitem')
+                a(href='/posts/' + post.id + '/edit') Edit
+            li(role='menuitem')
+                button(type='button',name='delete-posts-' + post.id) Delete
+
+
 mixin postPreview(post)
     article.post.flex-column
         header
-            if(user && post.author.id === user.id)
-                ul(role='menu')
-                    li(role='menuitem')
-                        a(href='/posts/' + post.id + '/edit') Edit
-                    li(role='menuitem')
-                        button Delete
+            +actions(post)
             h1 #{post.title}
             small
                 time(datetime=post.publishedAt,pubdate) #{post.publishedAt.toDateString()}
@@ -31,6 +35,8 @@ mixin postPreview(post)
 mixin post(post)
     article.post.flex-column.full-post
         header.container-content
+            div
+                +actions(post)
             h1 #{post.title}
             small
                 time(datetime=post.publishedAt,pubdate) #{post.publishedAt.toDateString()}
@@ -44,8 +50,10 @@ mixin post(post)
                         li.tag
                             a(href='/?tag=' + tag.id, rel='tag') ##{tag.label}
         section#comments.container-content
-            h2 comments
+            header
+                h2 comments
+                button#add-comment(type='button',name='comment-' + post.id, data-csrf=_csrf) + Add comment
             ol
                 each comment in post.comments
                     li.comment-container
-                        +commentComp(comment)
+                        +commentComp(comment,post)

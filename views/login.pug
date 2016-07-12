@@ -72,7 +72,7 @@ html
         form(action="/login", method="post")
             input(hidden=true, id='_csrf', name='_csrf', value=_csrf)
             label Username or email:
-                input(type='text', name="username", placeholder="ex: lorenzofox3 or foo@bar.com",required)
+                input(type='text', name="username",autofocus, placeholder="ex: lorenzofox3 or foo@bar.com",required)
             label Password:
                 input(type="password",name="password",placeholder="ex: My.Sup3rSecr3t",required)
             button Log in

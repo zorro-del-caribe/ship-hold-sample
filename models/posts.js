@@ -3,10 +3,10 @@ module.exports = function (sh) {
     table: 'posts',
     columns: {
       id: 'integer',
-      title: 'string',
-      publishedAt: 'timestamp',
-      lastModifiedAt: 'timestamp',
-      content: 'string',
+      title: {type: 'string', required: true, minLength: 3},
+      publishedAt: {type: ['string', 'object']},
+      lastModifiedAt: {type: ['string', 'object']},
+      content: {type: 'string', required: true},
       authorId: 'integer'
     },
     relations: {

@@ -46,22 +46,22 @@ pg.connect(connectionString, function (err, client, done) {
     CREATE TABLE comments
     (
     id serial PRIMARY KEY,
-    "authorId" integer REFERENCES users,
-    "postId" integer REFERENCES posts,
+    "authorId" integer REFERENCES users ON DELETE CASCADE,
+    "postId" integer REFERENCES posts ON DELETE CASCADE,
     "publishedAt" timestamp,
     content text
     );
     CREATE TABLE tags
     (
     id serial PRIMARY KEY,
-    label varchar(100),
+    label varchar(100) UNIQUE,
     description varchar(255)
     );
     CREATE TABLE posts_tags
     (
     id serial PRIMARY KEY,
-    "tagId" integer REFERENCES tags,
-    "postId" integer REFERENCES posts,
+    "tagId" integer REFERENCES tags ON DELETE CASCADE,
+    "postId" integer REFERENCES posts ON DELETE CASCADE,
     UNIQUE("tagId", "postId")
     );
     CREATE TABLE passwords
@@ -69,7 +69,7 @@ pg.connect(connectionString, function (err, client, done) {
     id serial PRIMARY KEY,
     salt varchar(255),
     hash varchar(255),
-    "userId" integer REFERENCES users
+    "userId" integer REFERENCES users ON DELETE CASCADE
     );
     `;
     client.query(tableQ, function (err, result) {

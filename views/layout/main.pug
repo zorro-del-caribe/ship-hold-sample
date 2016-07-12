@@ -1,7 +1,7 @@
 html
     head
         title Super Blog
-        meta(name='viewport',content='"width=device-width, initial-scale=1"')
+        meta(name='viewport',content="width=device-width")
         link(rel='styleSheet', type='text/css', href='/public/main.css')
     body
         block inlineCss
@@ -15,7 +15,10 @@ html
                 ul(role='menu')
                     if(!user)
                         li(role='menuitem')
-                            a(href='/login') Log in
+                            a(href='/login')
+                                //svg(aria-hidden=true)
+                                    //use(xlink:href='/public/icons/symbol-defs.svg#icon-user')
+                                | Log in
                     if(user)
                         li(role='menuitem')
                             a(href='/logout') Log out
@@ -28,3 +31,4 @@ html
         footer.center-text
             p Laurent Renard copyright
         script(src='/public/main.js')
+        //script(src='/public/icons/svgxuse.js',defer)

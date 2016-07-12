@@ -1,6 +1,10 @@
-mixin commentComp(comment)
+mixin commentComp(comment,post)
     article.comment
         header
+            if(user && user.id === post.authorId)
+                ul(role='menu')
+                    li(role='menuitem')
+                        button(type='button',name='delete-comments-' + comment.id) Delete
             small
                 time(datetime=comment.publishedAt,pubdate) #{comment.publishedAt.toDateString()}
                 |  by&nbsp;

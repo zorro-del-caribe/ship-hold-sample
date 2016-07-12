@@ -88,7 +88,7 @@ Promise.all(['admin', 'visitor'].map(role=> Roles.insert({title: role}).run()))
         return Promise.all([...intGen(200)]
           .map(int=> {
             return Tags
-              .insert({label: casual.word, description: casual.sentence})
+              .insert({label: (casual.word)+int, description: casual.sentence})
               .run();
           })
         );
