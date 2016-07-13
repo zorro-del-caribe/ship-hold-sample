@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:create": "node ./scripts/createTable.js",
     "db:fixture": "node ./scripts/fixture.js",
-    "db:bootstrap": "npm run db:create && npm run db:fixture"
+    "db:bootstrap": "npm run db:create && npm run db:fixture",
     "start": "node ./index.js"
   },
   "keywords": [
@@ -38,7 +38,8 @@
     "koa-static": "^2.0.0",
     "kors": "^1.0.0",
     "pg": "^5.1.0",
-    "ship-hold":"^1.0.0",
+    "ship-hold": "^1.0.0",
+    "ship-hold-dao": "0.0.1",
     "stampit": "^2.1.1"
   }
 }
